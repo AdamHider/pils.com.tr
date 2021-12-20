@@ -1,0 +1,101 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04.01.2021, 13:12:15
+    Author     : Ayder Adjivapov
+*/
+ul.breadcrumb{
+    margin: 20px 0;
+}
+.content-product-mainheader .row{
+    position: relative;
+}
+#filter_form div.list-group-item{
+    padding: 0 10px;
+}
+.filters-panel::after{
+    display: none !important;
+}
+.product-listing-header {
+    position: relative;
+    min-height: 60vh;
+}
+.img-cate {
+    text-align: center;
+}
+.img-cate img{
+    display: initial !important;
+    max-width: 350px;
+    margin: 0 auto;
+    right: 10%;
+}
+
+.refine-search__content .refine-search__subitem{
+    float: none !important;
+    display: inline-block !important;
+    box-shadow: 1px 3px 15px -3px #00000036;
+    padding: 3px;
+    border-radius: 3px;
+    transition: 0.4s all;
+    vertical-align: middle;
+}
+.refine-search__content .refine-search__subitem:hover{
+    transform: translateY(-13px) scale(1.02);
+    box-shadow: 1px 13px 25px -3px #0000003b;
+}
+.refine-search .thumbnail{
+    margin-bottom: 0px !important;
+    border: none !important;
+}
+.refine-search__content .refine-search__subitem a.text-center{
+    min-height: 4.5em;
+    max-height: 4.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    -webkit-line-clamp: 1;
+    line-height: 1.4;
+    display: grid;
+    align-items: center;
+    color: #716d6d;
+}
+.refine-search__content {
+    text-align: center;
+}
+.refine-loadmore{
+    display: none !important;
+}
+.refine-search.form-group.clearfix{
+    /*position: absolute;*/
+    bottom: 0;
+    width: 100%;
+}
+.category-info .row{
+    top: 10vh;
+}
+.category-info .row h3{
+    font-size: 25px;
+}
+
+.product-item-container{
+    background-color: white !important;
+    box-shadow: 1px 3px 15px -3px #00000036;
+}
+.products-list .product-grid .product-item-container .right-block{
+    background-color: white !important;
+}
+.products-list .product-grid .product-item-container .left-block .product-image-container{
+    padding: 1em;
+}
+.product-layout.product-grid {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+}
+.sidebar-offcanvas {
+    box-shadow: 1px 3px 15px -3px #00000036;
+    margin: 0px !important;
+    padding: 0px !important;
+}

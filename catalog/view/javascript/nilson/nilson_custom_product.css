@@ -1,0 +1,64 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04.01.2021, 13:12:15
+    Author     : Ayder Adjivapov
+*/
+ul.breadcrumb{
+    margin: 20px 0;
+}
+.content-product-mainheader .row{
+    position: relative;
+}
+.large-image  {
+    padding: 0 5em !important;
+    border: none !important;
+}
+.large-image img {
+    max-width: 380px;
+}
+
+.title-product h1{
+    font-size: 35px !important;
+    font-weight: bold !important;
+}
+
+.product-view .content-product-right{
+    padding: 10vh 0;
+    min-height: 60vh;
+}
+.inner-box-desc{
+    margin-bottom: 15px;
+}
+.content-product-midde {
+    margin: 0px !important;
+}
+.content-product-content {
+    background-color: white;
+    border-radius: 5px;
+    padding: 2em;
+    box-shadow: 1px 3px 15px -3px #00000036;
+}
+
+.content-product-content h3{
+    text-align: center;
+}
+.product-detail .producttab .tab-content .product-property-list{
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+.product-detail .producttab .tab-content .product-property-list li{
+    width: 50% !important;
+    padding: 5px 20px !important;
+}
+.product-detail .producttab .tab-content .product-property-list li .propery-title{
+    min-width: 50% !important; 
+}
+.product-detail .producttab .tab-content .product-property-list li .propery-des{
+    min-width: 50% !important;
+    text-align: right !important;
+}

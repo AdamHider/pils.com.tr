@@ -1,0 +1,453 @@
+
+{{ header }}
+<div id="product_wizard" >
+    {% if iss_register.success %}
+        <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ iss_register.success }}</div>
+    {% endif %}
+    {% if iss_register.error_warning %}
+        <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ iss_register.error_warning }}</div>
+    {% endif %}
+    {% if iss_login.error_warning %}
+        <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ iss_login.error_warning }}</div>
+    {% endif %}
+    <div class="product-wizard-grid">
+        {% if column_left and column_right %}
+            {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+            {% set class = 'col-sm-9' %}
+        {% else %}
+            {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div class="product-wizard-left-column">
+            <ul class="wizard-tab-navigation">
+                <li class="tab-link" data-target="tab1" data-tab_name="backgrounds">Arkaplan</li>
+                <li class="tab-link" data-target="tab2" data-tab_name="series">Seri</li>
+                <li class="tab-link" data-target="tab3" style="display: none" data-tab_name="frames">Cerceve rengi</li>
+                <li class="tab-link" data-target="tab4" style="display: none" data-tab_name="sockets">Kapak rengi</li>
+            </ul>
+            <div class="wizard-tabs">
+                <div id="tab1" class="tab-container" data-section="backgrounds">
+                    <div class="tab-content">
+                        <div class="additional-options-container">
+                            <div class="attach-image-block">
+                                <input id="photo_attach" style="display:none"  type="file" onchange="productWizard.photos.upload(this.files)"/>
+                                <a class="button" onclick="productWizard.photos.initiate()">
+                                    <i class="fa fa-camera"></i> 
+                                    Attach photo
+                                </a>
+                            </div>
+                            
+                            <div class="color-picker-block">
+                                <input type="color" id="colorpicker" name="colorpicker" value="#e66465">
+                                <label for="colorpicker"><i class="fa fa-eyedropper "></i> Select colour</label>
+                            </div>
+                        </div>
+                        <div class="wizard-option-list"></div>
+                    </div>
+                </div>
+                <div id="tab2" class="tab-container" data-section="series">
+                    <div class="tab-content">
+                        <div class="wizard-option-list"></div>
+                    </div>
+                </div>
+                <div id="tab3" class="tab-container" data-section="frames">
+                    <div class="tab-content">
+                        <div class="wizard-option-list"></div>
+                    </div>
+                </div>
+                <div id="tab4" class="tab-container" data-section="sockets">
+                    <div class="tab-content">
+                        <div class="wizard-option-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-wizard-right-column">
+            <div class="wizard-view">
+                <div class="wizard-view-layer wizard-layer-backgrounds">
+                    <img src="image/catalog/product_wizard/backgrounds/white.jpg"/>
+                </div>
+                <div class="wizard-socket-container">
+                    <div class="wizard-socket-layer-container">
+                        <div class="wizard-view-layer wizard-layer-frames">
+                            <img src="image/catalog/product_wizard/frames/touran_beyaz.png"/>
+                        </div>
+                        <div class="wizard-view-layer wizard-layer-sockets">
+                            <img src="image/catalog/product_wizard/sockets/touran_beyaz.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footer }}
+<script type="text/javascript">
+    var productWizard = {
+        config:{
+            backgrounds: [
+                {title:'White', image:'white.jpg'},
+                {title:'Gray', image:'gray.jpg'},
+                {title:'Black', image:'black.jpg'},
+                {title:'Krem', image:'creme.jpg'},
+                {title:'Green', image:'green.jpg'},
+                {title:'Dark Green', image:'dark_green.jpg'},
+                {title:'Blue', image:'blue.jpg'},
+                {title:'Dark Blue', image:'dark_blue.jpg'},
+                {title:'Red', image:'red.jpg'}
+            ],
+            series: [
+                {title:'Touran', image:'touran.jpg', children: {
+                        frames: [
+                            {title:'Beyaz', image:'touran_beyaz.png'},
+                            {title:'Krem', image:'touran_krem.png'},
+                            {title:'Gumus', image:'touran_gumus.png'},
+                            {title:'Altin', image:'touran_altin.png'},
+                            {title:'Fume', image:'touran_fume.png'},
+                            {title:'Siyah', image:'touran_siyah.png'}
+                        ],
+                        sockets: [
+                            {title:'Beyaz', image:'touran_beyaz.png'},
+                            {title:'Krem', image:'touran_krem.png'},
+                            {title:'Gumus', image:'touran_gumus.png'},
+                            {title:'Altin', image:'touran_altin.png'},
+                            {title:'Fume', image:'touran_fume.png'},
+                            {title:'Siyah', image:'touran_siyah.png'}
+                        ]
+                    }
+                }
+            ],
+        },
+        init: function(){
+            productWizard.initControls();
+            productWizard.tabs.init();
+        },
+        initControls: function(){
+            
+        },
+        tabs: {
+            chain_opening: true,
+            init: function(){
+                productWizard.tabs.initControls();
+                productWizard.tabs.render(productWizard.config);
+                productWizard.tabs.open('tab1');
+            },
+            initControls: function(){
+                $(".tab-link").click(function(){
+                    productWizard.tabs.chain_opening = false;
+                    productWizard.tabs.open($(this).attr('data-target'));
+                });
+                $('#colorpicker').on('change', function(){
+                    var color = this.value;
+                    $('.wizard-view .wizard-layer-backgrounds img').css('opacity', 0);
+                    $('.wizard-view .wizard-layer-backgrounds').css('background-color', color);
+                });
+                //
+            },
+            open: function(tabName){
+                var i, tabcontent, tablinks;
+                $(".tab-container").hide();
+                $(".tab-link").removeClass('active');
+                
+                $("#"+tabName).show();
+                $(".tab-link[data-target='"+tabName+"']").addClass('active');
+            },
+            render: function(tabs, special_tab){
+                
+                for(var tab_title in tabs){
+                    if(special_tab && tab_title != special_tab){
+                        continue;
+                    }
+                    $(".tab-link[data-tab_name='"+tab_title+"']").show();
+                    document.querySelector('.tab-container[data-section="'+tab_title+'"] .wizard-option-list').innerHTML = '';
+                    var tab_list = tabs[tab_title];
+                    for(var item in tab_list){
+                        var item_element = document.createElement('DIV');
+                        item_element.setAttribute('class', 'wizard-option');
+                        
+                        var item_link = document.createElement('A');
+                        item_link.setAttribute('class', 'wizard-option-link');
+                        item_link.setAttribute('data-index', item);
+                        item_link.setAttribute('data-layer', tab_title);
+                        var url = 'image/catalog/product_wizard/'+tab_title+'/';
+                        if(tab_list[item].image.indexOf('http') > -1){
+                            url = '';
+                        }
+                        item_link.innerHTML = '<img src="' + url + tab_list[item].image+'" class="img-responsive">';
+                        item_link.innerHTML += '<label>'+tab_list[item].title+'</label>';
+                        
+                        item_link.addEventListener('click', function(e){
+                            var current_layer = this.dataset.layer;
+                            var current_index = this.dataset.index;
+                            $('.tab-container[data-section="'+current_layer+'"] .wizard-option-link').removeClass('active');
+                            $(this).addClass('active');
+                            if(current_layer == 'series'){ 
+                                productWizard.tabs.open('tab3');
+                                productWizard.tabs.render(productWizard.config[current_layer][current_index].children);
+                                return;
+                            }
+                            var current_image = tabs[current_layer][current_index].image;
+                            productWizard.view.render(current_layer, current_image);
+                            if(current_layer == 'sockets'){ 
+                                productWizard.tabs.chain_opening = false;
+                                return;
+                            }
+                            if(productWizard.tabs.chain_opening){
+                                var next_tab = $(".tab-container[data-section='"+current_layer+"']").next().attr('id');
+                                productWizard.tabs.open(next_tab);
+                            }
+                            
+                        });
+                        item_element.appendChild(item_link);
+                        document.querySelector('.tab-container[data-section="'+tab_title+'"] .wizard-option-list').appendChild(item_element);
+                    }
+                }
+            },
+        },
+        view:{
+            init: function(){
+                
+            },
+            initControls: function(){
+                
+            },
+            render: function(current_layer, current_image){
+                var url = 'image/catalog/product_wizard/'+current_layer+'/';
+                if(current_image.indexOf('http') > -1){
+                    url = '';
+                }
+                $('.wizard-view .wizard-layer-'+current_layer+' img').css('opacity', 1);
+                $('.wizard-view .wizard-layer-'+current_layer+' img').attr('src', url + current_image);
+            },
+        },
+        
+        photos:{
+            list: [],
+            upload:function(fileList){
+                if( fileList.length ){
+                    if( fileList[0].type.indexOf('image')===-1 ){
+			alert("Файл должен быть изображением");
+			return false;
+		    }
+                    var file_name=(new Date()).getTime()+'.'+fileList[0].name.split('.').pop();
+                    /*var url = '';
+                    var xhr = new XMLHttpRequest();
+                    var fd = new FormData();
+                    xhr.open("POST", url, true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            if( xhr.responseText.indexOf('uploaded')>-1 ){
+                            } else {
+                            }
+                        }
+                    };
+                    fd.append("file_name",file_name);
+                    fd.append("upload_file", fileList[0]);
+                    xhr.send(fd);*/
+                    var url = window.URL.createObjectURL(fileList[0]);
+                    productWizard.config.backgrounds.unshift({
+                        title:file_name, 
+                        image: url
+                    });
+                    productWizard.tabs.render(productWizard.config, 'backgrounds');
+                    $("img[src='"+url+"']").click();
+                }
+            },
+            initiate:function(){
+                $('#photo_attach').click();
+            }
+        },
+    }
+    productWizard.init();
+</script>            
+<style>
+    .row > .col-sm-4,
+    .row > .col-sm-8{
+        padding: 0px !important;
+    }
+    .product-wizard-grid{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+    .product-wizard-left-column{
+        box-shadow: 1px 0px 15px -6px #00000075;
+        position: relative;
+        z-index: 100;
+    }
+    .product-wizard-right-column{
+        
+    }
+    #product_wizard{
+        width: 100vw;
+        max-width: 100vw;
+        overflow: hidden;
+    }
+    
+    /*TABS*/
+    .wizard-tab-navigation {
+        overflow: hidden;
+        background-color: #f1f1f1;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        border-bottom: 3px solid #ef7c2f;
+    }
+
+    /* Style the buttons inside the tab */
+    .wizard-tab-navigation li {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+        text-align: center;
+    }
+
+    /* Change background color of buttons on hover */
+    .wizard-tab-navigation li:hover {
+        background-color: #252525;
+        color: white;
+    }
+
+    /* Create an active/current tablink class */
+    .wizard-tab-navigation li.active {
+        background-color: #ef7c2f;
+        color: white;
+    }
+    .wizard-option-link.active{
+        color: #ef7c2f;
+    }
+
+    /* Style the tab content */
+    .tab-container {
+        display: none;
+        border-top: none;
+    }
+    .tab-content{
+        max-height: 100vh;
+        overflow: auto;
+        padding: 1em;
+        text-align: center;
+    }
+    .tab-content .additional-options-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 10px;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    .tab-content .additional-options-container .attach-image-block{
+        background-color: white;
+        box-shadow: 1px 3px 15px -5px #00000047;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 0px;
+    }
+    .attach-image-block a{
+        display: block;
+        background-color: transparent;
+        color: #666 !important;
+        font-weight: bold;
+    }
+    .attach-image-block a:hover{
+        background-color: transparent;
+    }
+    .attach-image-block a:hover i{
+        color: #ef7c2f;
+    }
+    .attach-image-block a i{
+        display: block;
+        font-size: 30px;
+        padding: 10px;
+    }
+    .tab-content .additional-options-container .color-picker-block{
+        background-color: white;
+        box-shadow: 1px 3px 15px -5px #00000047;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px;
+    }
+    .color-picker-block input{
+        height: 50px;
+        background-color: white;
+        border-radius: 5px;
+        width: 50px;
+        vertical-align: middle;
+    }
+    .color-picker-block label{
+        vertical-align: middle;
+        margin: 0;
+        display: block;
+    }
+    .wizard-option-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+    .tab-content .wizard-option{
+        background-color: white;
+        box-shadow: 1px 3px 15px -5px #00000047;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px;
+    }
+    .tab-content .wizard-option a{
+        
+    }
+    .tab-content .wizard-option img{
+        margin: 0 auto;
+    }
+    .tab-content .wizard-option label{
+        font-size: 15px;
+    }
+    .wizard-view{
+        position: relative;
+    }
+    
+    .wizard-layer-backgrounds{
+        position: absolute;
+    }
+    .wizard-layer-backgrounds img{
+        height: 100%;
+        width: auto;
+        max-width: inherit;
+        min-width: 100vw;
+    }
+    .wizard-socket-container{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 100vh;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 100vh;
+    }
+    .wizard-socket-layer-container{
+        text-align: center;
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+        margin: 0 auto;
+        max-width: max-content;
+    }
+    .wizard-socket-container .wizard-view-layer {
+    }
+    .wizard-layer-sockets{
+        position: absolute;
+        top: 0;
+        margin: 0 auto;
+    }
+    .wizard-layer-sockets img{
+        max-width: 200px;
+    }
+    .wizard-layer-frames{
+        
+    }
+    .wizard-layer-frames img{
+        max-width: 200px;
+        
+    }
+</style>

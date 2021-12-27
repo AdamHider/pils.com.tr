@@ -18,11 +18,11 @@
       <div class="distributor-links">
         <a class="distributor-link{% if mode == 'tr' %} active{% endif %}" href="index.php?route=extension/module/distributors_map&m=tr">
           <img src="image/catalog/distributors/distributors_tr.jpg" width="200"/>
-          <label>Turkey</label>
+          <label>{{ turkey_text }}</label>
         </a>
         <a class="distributor-link{% if mode == 'world' %} active{% endif %}"href="index.php?route=extension/module/distributors_map&m=world">
           <img src="image/catalog/distributors/distributors_world.jpg" width="200"/>
-          <label>World</label>
+          <label>{{ world_text }}</label>
         </a>
       </div>
       <h3>{{ text_location }}</h3>

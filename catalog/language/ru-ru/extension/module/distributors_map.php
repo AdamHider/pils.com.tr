@@ -1,7 +1,9 @@
 <?php
 // Heading
-$_['heading_title'] = 'Distributors';
+$_['heading_title'] = 'Дистрибьюторы';
 
 // Text
-$_['map_header_world']      = 'Our distributors around the world.';
-$_['map_header_tr']      = 'Our distributors in Turkey.';
+$_['map_header_world']      = 'Наши дистрибьюторы в мире';
+$_['map_header_tr']      = 'Наши дистрибьюторы в Турции';
+$_['world_text']       = 'Мир';
+$_['turkey_text']       = 'Турция';

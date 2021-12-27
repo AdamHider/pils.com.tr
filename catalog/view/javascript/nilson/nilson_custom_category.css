@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : Ayder Adjivapov
 */
 ul.breadcrumb{
-    margin: 20px 0;
+    margin: 20px 0 !important;
 }
 .content-product-mainheader .row{
     position: relative;
@@ -98,4 +98,21 @@ ul.breadcrumb{
     box-shadow: 1px 3px 15px -3px #00000036;
     margin: 0px !important;
     padding: 0px !important;
+}
+
+@media all and (max-width: 768px){
+    .product-listing-header  .parallax-layer{
+        position: relative;
+    }
+    .category-info .row{
+        top: 0;
+    }
+    .img-cate img{
+        left: 0;
+    }
+    .typeheader-10 .bottom-right{
+        position: absolute;
+        right: 30px;
+        top: 15px;
+    }
 }

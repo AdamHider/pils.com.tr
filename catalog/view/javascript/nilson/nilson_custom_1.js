@@ -72,6 +72,7 @@ var Parallax = {
     },
 
     checkElementsVisibility: function(){
+        var breakpoint = 70;
         jQuery('.so-page-builder > .container-fluid').each(function(e){
             var active_element = document.querySelector('.so-page-builder > .container-fluid.active');
             if(!active_element){
@@ -82,7 +83,7 @@ var Parallax = {
                 }
             }
             if((Parallax.scrollDirection == 'down' || Parallax.scrollDirection == 'neutral') && !Parallax.isScrolling){
-                if(active_element && active_element.getBoundingClientRect().top < 0){
+                if(active_element && active_element.getBoundingClientRect().top < -breakpoint){
                     Parallax.isScrolling = true;
                     setTimeout(function(){
                         if(active_element.nextElementSibling){
@@ -92,10 +93,10 @@ var Parallax = {
                             Parallax.isScrolling = false;
                         }, 400);
                     }, 100);
-                }
+                } 
             } else 
             if((Parallax.scrollDirection == 'up' || Parallax.scrollDirection == 'neutral')  && !Parallax.isScrolling){
-                if(active_element && active_element.getBoundingClientRect().top > 0){
+                if(active_element && active_element.getBoundingClientRect().top > breakpoint){
                     Parallax.isScrolling = true;
                     setTimeout(function(){
                         if(active_element.previousElementSibling){
@@ -105,7 +106,7 @@ var Parallax = {
                             Parallax.isScrolling = false;
                         }, 400);
                     }, 100);
-                }
+                } 
             } 
         });
     },
@@ -150,14 +151,15 @@ var Parallax = {
         return false;
     },
     checkScrollDirection: function(){
-        if (Parallax.lastScrollTop < document.querySelector('#wrapper').scrollTop) {
+        var current_scroll = document.querySelector('#wrapper').scrollTop;
+        if (Parallax.lastScrollTop < current_scroll) {
             Parallax.scrollDirection = 'down';
-        } else if (Parallax.lastScrollTop > document.querySelector('#wrapper').scrollTop) {
+        } else if (Parallax.lastScrollTop > current_scroll) {
             Parallax.scrollDirection = 'up';
-        } else if (Parallax.lastScrollTop == document.querySelector('#wrapper').scrollTop) {
+        } else if (Parallax.lastScrollTop == current_scroll) {
             Parallax.scrollDirection = 'neutral';
         }
-        Parallax.lastScrollTop = document.querySelector('#wrapper').scrollTop;
+        Parallax.lastScrollTop = current_scroll;
     }
 }
 jQuery(document).ready(function(){

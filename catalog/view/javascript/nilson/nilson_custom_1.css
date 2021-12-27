@@ -19,24 +19,23 @@ body{
 #wrapper{
     max-height: 100vh;
     overflow-y: scroll;
-    scroll-snap-points-y: repeat(3rem);
-    //scroll-snap-type: y mandatory;
-    -webkit-overflow-scrolling: touch
-}
-.container-fluid, .so-page-builder .container  {
-    scroll-snap-align: start;
-}
-.step-by-step #wrapper{
-    scroll-snap-type: y;
-    
 }
 .owl2-carousel .owl2-stage-outer{
-    height: 80vh !important;
-    max-height: 80vh;
+    
+}
+.yt-content-slider .yt-content-slide {
+    position: relative;
+    height: 95vh;
+    display: flex;
+    align-items: center;
 }
 .yt-content-slider .yt-content-slide .caption{
-    top: 0;
     background-color: transparent;
+    position: relative;
+    bottom: unset;
+    left: unset;
+    right: unset;
+    top: unset;
 }
 
 .owl2-carousel  .yt-content-slide > img{
@@ -96,7 +95,7 @@ body{
     margin: 0 auto;
 }
 .common-home #header .header-bottom{
-    width: 90% !important;
+    width: 90%;
     position: absolute;
     
 }
@@ -139,12 +138,13 @@ body{
     float: none;
 }
 .typeheader-10 .bottom-right{
-    padding-top: 0;
-}
-.typeheader-10 .language .pull-left{
     float: right !important;
     position: absolute;
-    right: 0;
+    right: 15px;
+    top: 0;
+    width: auto;
+}
+.typeheader-10 .language .pull-left{
 }
 .typeheader-10 .language .pull-left button.dropdown-toggle{
     color: white;
@@ -255,17 +255,8 @@ body{
 .home-header-row .home-header-image img{
     width: 45vh;
 }
-.home-header-row.box-content1  .home-header-image img{
+.home-header-row .home-header-image img{
     width: 45vh;
-}
-.home-header-row.box-content2  .home-header-image img{
-    width: 40vh;
-}
-.home-header-row.box-content2  .col-lg-6:nth-child(1){
-    padding-left: 10%;
-}
-.home-header-row.box-content2  .col-lg-6:nth-child(2){
-    padding-right: 10%;
 }
 .home-header-row .home-header-text{
     color: white;
@@ -346,6 +337,12 @@ header.typeheader-10 .megamenu-style-dev .navbar-default .horizontal .navbar-hea
     }
 }
 @media all and (max-width: 768px){
+    #header.typeheader-10{
+        padding: 0;
+    }
+    .common-home #header .header-bottom{
+        width: 100%;
+    }
     #header .header-bottom .bottom-center{
         position: absolute;
         left: 0;
@@ -357,8 +354,11 @@ header.typeheader-10 .megamenu-style-dev .navbar-default .horizontal .navbar-hea
         border: none !important;
         margin: 10px 0 !important;
     }
-    
-    
+    .yt-content-slider .yt-content-slide .caption{
+    }
+    .subcategory.nilson-category-tab .row{
+        display: none;
+    }
 }
 
 
@@ -372,6 +372,21 @@ header.typeheader-10 .megamenu-style-dev .navbar-default .horizontal .navbar-hea
         max-height: 100vh;
         background: #252525 !important;
         width: 70%;
+    }
+    .megamenu-style-dev.responsive .navbar-default .horizontal .megamenu-wrapper ul.megamenu li .sub-menu .content{
+        background: transparent;
+        border: none;
+        height: auto !important;
+    }
+    .container-megamenu.horizontal ul.megamenu .subcategory.nilson-category-tab a.title-submenu{
+        font-weight: 400;
+        text-align: left;
+        background: transparent !important;
+        margin: 5px 0 !important;
+        line-height: 1.2;
+    }
+    .megamenu-style-dev .navbar-default .horizontal .megamenu-wrapper ul.megamenu > li.active > a{
+        padding: 0 !important;
     }
 }
 
@@ -519,6 +534,18 @@ header.typeheader-10 .megamenu-style-dev .navbar-default .horizontal .navbar-hea
 .so-extraslider .extraslider-inner{
     overfrlow-x: hidden;
     overfrlow-y: visible;    
+}
+
+@media all and (max-width: 768px){
+    .blog-external-simple{
+        grid-template: 'item1 item1 item1 item1' 'item2 item2 item3 item3';
+    }
+    .blog-home .item{
+        min-height: 120px;
+    }
+    .blog-external-simple .cat-wrap:nth-child(1) .item{
+        min-height: 250px;
+    }
 }
 /*=============HOME BLOG================*/
 
@@ -747,6 +774,13 @@ header.typeheader-10 .megamenu-style-dev .navbar-default .horizontal .navbar-hea
 .home-infoblock .box-container .box-element:hover  .box-title h2{
     padding: 10px 0 !important;
     color: white !important; 
+}
+
+@media all and (max-width: 768px){
+    .home-infoblock .box-container .box-element{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
 }
 /*=========HOME INFOBLOCK=============*/
 
